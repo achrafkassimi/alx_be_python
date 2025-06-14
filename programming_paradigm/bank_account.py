@@ -1,9 +1,9 @@
 # bank_account.py
 
 class BankAccount:
-    def __init__(self, initial_balance=0.0):
+    def __init__(self, account_balance=0.0):
         # Initialize the balance, defaulting to 0 if no initial balance is provided
-        self._account_balance = initial_balance
+        self._account_balance = account_balance
 
     def deposit(self, amount):
         """Adds the specified amount to the account balance."""
@@ -14,14 +14,10 @@ class BankAccount:
 
     def withdraw(self, amount):
         """Withdraws the specified amount from the account balance if funds are sufficient."""
-        if amount > 0 and self._account_balance >= amount:
-            self._account_balance -= amount
-            return True
-        elif amount > 0:
-            print("Insufficient funds.")
-        else:
-            print("Withdraw amount must be positive.")
-        return False
+        if amount > self.account_balance:
+            return False
+        self.account_balance -= amount
+        return True
 
     def display_balance(self):
         """Displays the current balance in a user-friendly format."""
